@@ -75,17 +75,26 @@ int main()
 		cout << " No." << endl;
 	int count = 0;
 	string test_string = "bgghuhhhhuihuiuhu";
-	UINT8 *array = new UINT8[5] { 0x48, 0x65, 0x9C, 0x6C, 0x6A };
+	UINT8 *array = new UINT8[5] { 0x18, 0x35, 0x9C, 0x6C, 0x6A };
 	size_t bytes_wrote = my_serial.write(array, 5);
-	Sleep(5000);
-	string result = my_serial.read(10);
+	Sleep(10);
+	//string result = my_serial.read(10);
+	UINT8* array1 = new UINT8[10]{};
+	size_t leng = my_serial.read(array1, 10);
+
+	for (int i = 0; i < leng; i++)
+	{
+		cout << "array " << array1[i] << "\n";
+	}
+
+
 	while (count < 3) {
 		//size_t bytes_wrote = my_serial.write(test_string);
 		
 
 		cout << "Iteration: " << count << ", Bytes written: ";
 		cout << bytes_wrote << ", Bytes read: ";
-		cout << result.length() << ", String read: " << result << endl;
+		//cout << result.length() << ", String read: " << result << endl;
 
 		count += 1;
 	}
